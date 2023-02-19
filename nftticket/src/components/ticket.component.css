@@ -9,8 +9,8 @@
 .ticket-container{
     display: flex;
     width: auto;
-    width: 50%;
     flex-direction: column;
+    align-items: center;
     padding: 20px;
     /* background-color: red; */
     flex: 1;
@@ -26,6 +26,7 @@
     margin: 20px 0;
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .ticket{
