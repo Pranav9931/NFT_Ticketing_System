@@ -1,0 +1,77 @@
+.ticket-sale-detail{
+    background-color: #dc354510;
+    padding: 20px;
+    text-align: center;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+.ticket-container{
+    display: flex;
+    width: auto;
+    width: 50%;
+    flex-direction: column;
+    padding: 20px;
+    /* background-color: red; */
+    flex: 1;
+    margin: 0 auto;
+}
+
+.page-title{
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.ticketsWrapper{
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+}
+
+.ticket{
+    background: #1a1a1a;
+    padding: 30px 20px;
+    border-radius: 10px;
+    width: 300px;
+    border: 2px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ticket-type-title{
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.price-details{
+    border-bottom: 1px solid #eeeeee10;
+    padding: 15px 0;
+}
+
+.price-stroke{
+    font-size: 2em;
+    font-weight: 700;
+    color: #0090ff;
+}
+
+.ticket-desc{
+    font-size: .9em;
+    opacity: .3;
+    margin: 15px 0;
+}
+
+.list-items{
+    color: #ffffff60;
+    display: flex;
+    font-size: .9em;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-items li{
+    display:  block;
+}
+.border-round{
+    border: 2px solid #0090ff;
+}
