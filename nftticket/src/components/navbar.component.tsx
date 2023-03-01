@@ -1,11 +1,11 @@
 import React from 'react'
-import { FileCoinLogo, userAvatar } from '../assets'
+import { FileCoinLogo, NIUMLogo, userAvatar } from '../assets'
 import { useStateContext } from '../context'
 import "./navbar.component.css"
 
 const NavbarComponent = () => {
 
-    const [address, contract, connect] = useStateContext();
+    const { address, contract, connect } = useStateContext();
 
     const ProfileArea = () => {
         return (
@@ -24,7 +24,7 @@ const NavbarComponent = () => {
     return (
         <div className="navbar-container">
             <div className="logo">
-                <img src={FileCoinLogo} />
+                <img src={NIUMLogo} />
                 <span className="nav-title">NFT TICKETS</span>
             </div>
             <div className="walletArea">

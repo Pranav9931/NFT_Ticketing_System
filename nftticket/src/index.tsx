@@ -14,10 +14,10 @@ const root = ReactDOM.createRoot(
 
 
 
-const activeChainId: number = ChainId.Mumbai;
+// const activeChainId: number = ChainId.Mumbai;
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider desiredChainId={activeChainId}>
+    <ThirdwebProvider >
       <BrowserRouter>
         <StateContextProvider>
           <App />

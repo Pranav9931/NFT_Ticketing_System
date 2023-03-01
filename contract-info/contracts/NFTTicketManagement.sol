@@ -32,7 +32,7 @@ contract NFTTicketManagement {
     mapping(uint256 => Transaction) public transactions;
 
     // Define events
-    event addOwner(address owner, uint256 amount, string typeOfTicket);
+    event addTicket(address owner, uint256 amount, string typeOfTicket);
     event Payment(address ownerAddress, uint256 amount);
 
     // Define the constructor
@@ -48,18 +48,14 @@ contract NFTTicketManagement {
         string memory _typeOfTicket,
         string memory _imgUrl
     ) public payable returns (uint256) {
-        address newAddress = msg.sender;
-        require(
-            newAddress != concertManager,
-            "The manager couldn't buy the tickets."
-        );
+        address newOwner = msg.sender;
         bool success;
-        (success, ) = _owner.call{value: _amount}("");
+        (success, ) = concertManager.call{value: _amount}("");
         require(success, "Transfer failed.");
 
         Transaction storage newTransaction = transactions[numberOfTickets];
-        newTransaction.to = newAddress;
-        newTransaction.from = concertManager;
+        newTransaction.to = concertManager;
+        newTransaction.from = newOwner;
         newTransaction.amount = _amount;
         newTransaction.timestamp = block.timestamp;
         newTransaction.ticketType = _typeOfTicket;
@@ -79,8 +75,34 @@ contract NFTTicketManagement {
         numberOfTickets++;
 
         // Store the addEmployee transaction into the logs
-        emit addOwner(_owner, _amount, _typeOfTicket);
+        emit addTicket(_owner, _amount, _typeOfTicket);
 
         return numberOfTickets - 1;
+    }
+
+    function getAllTransactions() public view returns (Transaction[] memory) {
+        Transaction[] memory allTransactions = new Transaction[](
+            numberOfTransactions
+        );
+
+        for (uint256 i = 0; i < numberOfTransactions; i++) {
+            Transaction storage item = transactions[i];
+
+            allTransactions[i] = item;
+        }
+
+        return allTransactions;
+    }
+
+    function getAllTickets() public view returns (Tickets[] memory) {
+        Tickets[] memory allTickets = new Tickets[](numberOfTickets);
+
+        for (uint256 i = 0; i < numberOfTickets; i++) {
+            Tickets storage item = tickets[i];
+
+            allTickets[i] = item;
+        }
+
+        return allTickets;
     }
 }
