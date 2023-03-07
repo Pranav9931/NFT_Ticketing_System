@@ -9,9 +9,11 @@ const StateContext = createContext({} as any);
 export const StateContextProvider = ({ children }: { children: ReactNode }) => {
     // state logic here
 
-    const { contract, error }: any = useContract("0xe0A8505673180b627a46f55cBe0D844cEf78A3dE");
+    const { contract, error }: any = useContract("0x1ce07BD3521e11AA8eaF11998d2Df52e33e58C96");
     const address = useAddress();
     const connect = useMetamask();
+
+    const [activePage, setActivePage] = useState("home");
 
     const { mutateAsync: addTicketOwner, isLoading } = useContractWrite(contract, "addTicketOwner")
 
@@ -25,7 +27,7 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const getNFTAssets = async () => {
-            const data = await fetch("https://bafybeig7n2tc6gbkunybjfahwz4fsbso4roz7nw6fw45pqomjlkoxllb6a.ipfs.w3s.link/nftTicket.json");
+            const data = await fetch("https://bafybeiexeaa2asccdvldhbjulvkjiwk3ei46qch5fla334hr5ybensswtm.ipfs.w3s.link/nftTicket.json");
             const response = await data.json();
             setNftAsset(response);
         }
@@ -88,7 +90,9 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
                 setNftAsset,
                 ticketNumber,
                 setTicketNumber,
-                addTicket
+                addTicket,
+                activePage,
+                setActivePage
             }
         }>
             {children}

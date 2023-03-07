@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 const SuccessTransaction = () => {
     const navigate = useNavigate();
 
-    const [sec, setSec] = useState(9);
+    const [sec, setSec] = useState(5);
     useEffect(() => {
         setTimeout(() => {
             navigate(-1);
-        }, 10000);
+        }, 5000);
         setTimeout(() => {
             setSec(sec - 1);
         }, 1000)

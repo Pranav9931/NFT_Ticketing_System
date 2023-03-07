@@ -45,7 +45,8 @@ const Ticket = () => {
     const [value, setValue] = useState('');
 
     useEffect(() => {
-        const price = ticketNumber === 0 ? 0.3 : 0.8;
+        const data = String(Math.random())
+        const price = ticketNumber === 0 ? 1 + `${data.slice(1, 7)}` : 3 + `${data.slice(1, 7)}`;
 
         const val = `${address ? address.slice(1, 5) : "0x00000"}${price}${address ? address.slice(5, 10) : "00000"}${price}`
         setValue(() => val);
@@ -74,12 +75,15 @@ const Ticket = () => {
             </div> */}
 
             <div className="ticket" style={{ padding: '10px' }}>
-                <img src={getImageURL()} style={{ margin: '10px 0', borderRadius: '10px' }} className="tct-img" />
+                <img src={getImageURL()} style={{ margin: '5px 0 15px 0', borderRadius: '10px' }} className="tct-img" />
                 <div className='page-title'>
-                    India Vs Pakistan
+                    Dangerous Woman Tour | 18th Mar. 2023
                 </div>
-                <div style={{ margin: '15px 0', opacity: '0.3' }}>
-                    The biggest rivals are again on the battle field.
+                <div className='primary'>
+                    Ariana Grande
+                </div>
+                <div style={{ opacity: '0.3' }}>
+                    Witness the wildest ever woman in music. Presenting Ariana Grande on 18th Mar. 2023 on Times Square. Stay Tuned!
                 </div>
                 <div className="wrapper">
                     <div style={{ flex: 1 }}>
@@ -92,15 +96,15 @@ const Ticket = () => {
                     <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 500 }}>Price</div>
                         <div className="box-details">
-                            {ticketNumber === 0 ? "1.0" : "3.0"} BIT
+                            {ticketNumber === 0 ? "1.0" : "3.0"} FTM
                         </div>
                     </div>
                 </div>
-                <div style={{ display: "flex", margin: '-10px 0 0 0' }}>
+                <div style={{ display: "flex", margin: '-30px 0 0 0' }}>
                     <Barcode value={value} />
                 </div>
                 <div>
-                    <button className='btn-connect' style={{ margin: '15px 0', width: '100%' }} onClick={() => handlePayment()}>Book Ticket</button>
+                    <button className='btn-connect' style={{ width: '100%' }} onClick={() => handlePayment()}>Book Ticket</button>
                 </div>
             </div>
 

@@ -13,14 +13,28 @@
 }
 .logo img{
     height: 70px; 
+    cursor: pointer;
     /* border-right: 1px solid #e2e2e2; */
     /* padding-right: 20px; */
 }
 
-.nav-title{
-    padding: 0 20px;
-    font-weight: 600;
-    font-size: 20px;
+.nav-links{
+    display: flex;
+    gap: 20px;
+    margin-left: 40px;
+}
+.nav-links li{
+    display: block;
+    color: #ffffff60;
+    cursor: pointer;
+}
+
+.nav-links li:hover{
+    color: #ffffff;
+}
+
+.nav-links .active{
+    color: #0090ff;
 }
 
 .btn-connect{

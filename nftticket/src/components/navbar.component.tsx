@@ -1,12 +1,13 @@
 import React from 'react'
-import { FileCoinLogo, NIUMLogo, userAvatar } from '../assets'
+import { useNavigate } from 'react-router-dom'
+import { FileCoinLogo, Logo, NIUMLogo, userAvatar } from '../assets'
 import { useStateContext } from '../context'
 import "./navbar.component.css"
 
 const NavbarComponent = () => {
 
-    const { address, contract, connect } = useStateContext();
-
+    const { address, contract, connect, activePage } = useStateContext();
+    const navigate = useNavigate();
     const ProfileArea = () => {
         return (
             (!address) ?
@@ -24,8 +25,12 @@ const NavbarComponent = () => {
     return (
         <div className="navbar-container">
             <div className="logo">
-                <img src={NIUMLogo} />
-                <span className="nav-title">NFT TICKETS</span>
+                <img src={Logo} onClick={() => navigate("./")} />
+                <div className="nav-links">
+                    <li className={activePage === "home" ? "active" : ""}>Home</li>
+                    <li className={activePage === "yourtickets" ? "active" : ""}>Your Tickets</li>
+                    <li className={activePage === "recenttickets" ? "active" : ""} onClick={() => window.location.href = "https://testnet.ftmscan.com/address/0x1ce07BD3521e11AA8eaF11998d2Df52e33e58C96"} >FTM Scan</li>
+                </div>
             </div>
             <div className="walletArea">
                 {ProfileArea()}

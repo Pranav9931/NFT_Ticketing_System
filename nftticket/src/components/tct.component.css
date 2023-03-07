@@ -17,3 +17,14 @@
 .tct-img{
     height: 170px;
 }
+
+.primary{
+    margin: 15px 0;
+    background: #0090ff10;
+    max-width: 120px;
+    padding: 10px 20px;
+    text-align: center;
+    color: #0090ff;
+    font-weight: 700;
+    border-radius: 20px;
+}

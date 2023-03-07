@@ -12,12 +12,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-
-
-// const activeChainId: number = ChainId.Mumbai;
 root.render(
   <React.StrictMode>
-    <ThirdwebProvider >
+    <ThirdwebProvider activeChain='fantom-testnet'>
       <BrowserRouter>
         <StateContextProvider>
           <App />
