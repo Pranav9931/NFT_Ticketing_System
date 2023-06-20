@@ -27,7 +27,7 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const getNFTAssets = async () => {
-            const data = await fetch("https://bafybeiexeaa2asccdvldhbjulvkjiwk3ei46qch5fla334hr5ybensswtm.ipfs.w3s.link/nftTicket.json");
+            const data = await fetch("https://bafybeig7n2tc6gbkunybjfahwz4fsbso4roz7nw6fw45pqomjlkoxllb6a.ipfs.w3s.link/nftTicket.json");
             const response = await data.json();
             setNftAsset(response);
         }
@@ -55,20 +55,19 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
         }
     }
 
-    const getTransactions = async () => {
-        let allTransaction = [];
+    const getTickets = async () => {
+        let allTickets = [];
         try {
-            const transactions = await contract.call('getAllTransactions');
-            allTransaction = transactions.map((i: any) => {
+            const transactions = await contract.call('getAllTickets');
+            allTickets = transactions.map((i: any) => {
                 const timestamp = new Date(i.time.toNumber() * 1000).toLocaleString();
                 return (
                     {
-                        to: i.to,
-                        from: i.from,
+                        owner: i.owner,
                         time: timestamp,
                         amount: utils.formatEther(i.amount),
-                        type: i.typeOfTransaction,
-                        desc: i.description
+                        type: i.typeOfTicket,
+                        imgUrl: i.imgUrl
                     }
                 );
             });
@@ -76,7 +75,7 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
         } catch (err) {
             console.error(err);
         }
-        return allTransaction;
+        return allTickets;
     }
 
 
@@ -92,7 +91,8 @@ export const StateContextProvider = ({ children }: { children: ReactNode }) => {
                 setTicketNumber,
                 addTicket,
                 activePage,
-                setActivePage
+                setActivePage,
+                getTickets
             }
         }>
             {children}

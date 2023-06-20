@@ -1,46 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import "./tct.component.css";
-
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import { useStateContext } from '../context'
 
 import Barcode from 'react-barcode';
 
-import { useStateContext } from '../context';
-
-const Ticket = () => {
-
-    const {
-        address,
-        contract,
-        connect,
-        nftAsset,
-        setNftAsset,
-        ticketNumber,
-        setTicketNumber,
-        addTicket
-    } = useStateContext();
-
-    // const [form, setForm] = useState([])
-
-    const navigate = useNavigate();
-
-    const handlePayment = async () => {
-        const _type = ticketNumber === 0 ? "STANDARD" : "PREMIUM";
-        const _amount = ticketNumber === 0 ? "1" : "3";
-        const _imgUrl = nftAsset.images[img].imgUrl;
-        if (address) {
-            const data = await addTicket(_amount, _type, _imgUrl);
-            console.log("Transaction Successful", data);
-            navigate("../success");
-        } else {
-            alert("Connect your wallet first")
-        }
-    }
-
+const YourTicket = () => {
+    const {setActivePage, connect, ticketNumber, address, nftAsset, getTickets} = useStateContext();
     useEffect(() => {
+        setActivePage("yourtickets");
+    }, [])
+    const [ticket, setTicket] = useState([]);
+    // useEffect(() => {
+    //     const data: any = [];
+    //     const getTicket = async () => {
+    //         data = await getTickets();
+    //     }
+    //     setTicket(() => data);
+    // }, [connect, address])
 
-
-    }, [ticketNumber, address])
 
     const [value, setValue] = useState('');
 
@@ -51,9 +27,7 @@ const Ticket = () => {
         const val = `${address ? address.slice(1, 5) : "0x00000"}${price}${address ? address.slice(5, 10) : "00000"}${price}`
         setValue(() => val);
     }, [address, ticketNumber])
-
-    let img = 0;
-
+    let img;
     const getImageURL = () => {
 
         img = Math.round(Math.random() * 10) % 4;
@@ -63,9 +37,10 @@ const Ticket = () => {
         else
             return "abc"
     }
-
-    return (
-        <div className="tct">
+  return (
+    
+    <div className="tct-details">
+    <div className="tct">
             <span className='page-title'>
                 Your Ticket
             </span>
@@ -103,13 +78,11 @@ const Ticket = () => {
                 <div style={{ display: "flex", margin: '-30px 0 0 0' }}>
                     <Barcode value={value} />
                 </div>
-                <div>
-                    <button className='btn-connect' style={{ width: '100%' }} onClick={() => handlePayment()}>Book Ticket</button>
-                </div>
             </div>
 
         </div>
-    )
+        </div>
+  )
 }
 
-export default Ticket
+export default YourTicket

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import "./ticket.component.css";
 
 import { useStateContext } from '../context';
@@ -12,8 +12,13 @@ const TicketComponent = () => {
         nftAsset,
         setNftAsset,
         ticketNumber,
-        setTicketNumber
+        setTicketNumber,
+        setActivePage
     } = useStateContext();
+
+    useEffect(() => {
+        setActivePage("home");
+    }, []);
 
     return (
         <div className="ticket-container">

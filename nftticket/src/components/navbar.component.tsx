@@ -25,10 +25,10 @@ const NavbarComponent = () => {
     return (
         <div className="navbar-container">
             <div className="logo">
-                <img src={Logo} onClick={() => navigate("./")} />
+                <img src={NIUMLogo} onClick={() => navigate("./")} />
                 <div className="nav-links">
-                    <li className={activePage === "home" ? "active" : ""}>Home</li>
-                    <li className={activePage === "yourtickets" ? "active" : ""}>Your Tickets</li>
+                    <li onClick={() => navigate("./")} className={activePage === "home" ? "active" : ""}>Home</li>
+                    <li onClick={() => navigate("./tickets")} className={activePage === "yourtickets" ? "active" : ""}>Your Tickets</li>
                     <li className={activePage === "recenttickets" ? "active" : ""} onClick={() => window.location.href = "https://testnet.ftmscan.com/address/0x1ce07BD3521e11AA8eaF11998d2Df52e33e58C96"} >FTM Scan</li>
                 </div>
             </div>
